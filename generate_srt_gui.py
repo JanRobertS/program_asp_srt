@@ -4,7 +4,7 @@ import whisper
 import threading
 import os  # Do wymuszenia zamknięcia procesu
 
-# Funkcja obsługująca wybór pliku wideo
+# Funkcja obsługująca wybór pliku wideo asd
 def wybierz_plik():
     sciezka_pliku = filedialog.askopenfilename(
         title="Wybierz plik wideo",
