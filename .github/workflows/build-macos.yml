@@ -1,0 +1,40 @@
+name: Build macOS App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # Sprawdzenie repozytorium
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Zainstalowanie Pythona
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # Instalowanie zależności
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      # Kompilacja aplikacji
+      - name: Build the app
+        run: |
+          pyinstaller --onefile --windowed generate_srt_gui.py
+
+      # Przechowywanie aplikacji jako artefaktu
+      - name: Upload built app
+        uses: actions/upload-artifact@v3
+        with:
+          name: macOS-app
+          path: dist/*
