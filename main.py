@@ -57,7 +57,7 @@ def generuj_srt():
                 return
 
             start_spinner()
-            model = whisper.load_model("base")
+            model = whisper.load_model("medium")
 
             result = model.transcribe(sciezka_wideo, task="transcribe", language="pl")
             if not running:
